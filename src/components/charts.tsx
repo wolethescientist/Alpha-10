@@ -69,7 +69,8 @@ export function Donut({ data, currency = 'NGN', centerLabel, centerValue, size =
   const total = data.reduce((a, b) => a + b.value, 0)
   const active = hover !== null ? data[hover] : null
   return (
-    <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+    <div className="@container">
+    <div className="flex flex-col items-center gap-6 @lg:flex-row @lg:items-center">
       <div className="relative shrink-0" style={{ width: size, height: size }}>
         <ResponsiveContainer>
           <PieChart>
@@ -99,16 +100,17 @@ export function Donut({ data, currency = 'NGN', centerLabel, centerValue, size =
           </div>
         </div>
       </div>
-      <ul className="w-full flex-1 space-y-2">
+      <ul className="w-full min-w-0 flex-1 space-y-2">
         {data.map((d, i) => (
           <li key={d.name} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(null)} className={cx('flex items-center gap-3 rounded-lg px-2 py-1.5 text-sm transition', hover === i && 'bg-surface-2')}>
             <span className="size-2.5 shrink-0 rounded-full" style={{ background: d.color }} />
             <span className="min-w-0 flex-1 truncate text-ink">{d.name}</span>
-            <span className="num text-muted">{((d.value / total) * 100).toFixed(1)}%</span>
-            {!hideValues && <span className="num hidden w-28 text-right font-medium sm:block">{money(d.value, currency, { compact: true })}</span>}
+            <span className="num shrink-0 text-muted">{((d.value / total) * 100).toFixed(1)}%</span>
+            {!hideValues && <span className="num w-20 shrink-0 text-right font-medium">{money(d.value, currency, { compact: true })}</span>}
           </li>
         ))}
       </ul>
+    </div>
     </div>
   )
 }
