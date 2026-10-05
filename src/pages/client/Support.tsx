@@ -15,7 +15,9 @@ function Chat() {
   const rm = rmMap[acc.profile.rmId]!
   const [text, setText] = useState('')
   const end = useRef<HTMLDivElement>(null)
-  useEffect(() => end.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), [acc.chat.length, typing])
+  useEffect(() => {
+    end.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [acc.chat.length, typing])
   const submit = (t = text) => {
     if (!t.trim()) return
     send(t.trim())

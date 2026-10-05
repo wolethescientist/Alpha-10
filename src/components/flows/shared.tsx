@@ -76,7 +76,9 @@ export function QuickAmounts({ amounts, currency, onPick }: { amounts: number[];
 export function PinStep({ onComplete, label = 'Enter your 4-digit transaction PIN' }: { onComplete: () => void; label?: string }) {
   const [pin, setPin] = useState('')
   const ref = useRef<HTMLInputElement>(null)
-  useEffect(() => ref.current?.focus(), [])
+  useEffect(() => {
+    ref.current?.focus()
+  }, [])
   useEffect(() => {
     if (pin.length === 4) {
       const t = setTimeout(onComplete, 250)

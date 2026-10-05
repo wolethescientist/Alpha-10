@@ -78,14 +78,18 @@ function useMarketClock() {
 
 function ScrollTop() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo({ top: 0 }), [pathname])
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [pathname])
   return null
 }
 
 export default function App() {
   useMarketClock()
   const theme = useApp((s) => s.theme)
-  useEffect(() => useApp.getState().resumeTimers(), [])
+  useEffect(() => {
+    useApp.getState().resumeTimers()
+  }, [])
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
