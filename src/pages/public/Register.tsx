@@ -148,7 +148,7 @@ export default function Register() {
           <p className="font-display text-5xl leading-tight font-semibold">
             Open your account
             <br />
-            <span className="text-gold-300 italic">in minutes.</span>
+            <span className="text-gold-300">in minutes.</span>
           </p>
           <ul className="mt-8 space-y-3 text-white/75">
             {['BVN verified instantly with NIBSS', 'Upload documents from your phone', 'Personalised product recommendations', 'A dedicated relationship manager'].map((t) => (

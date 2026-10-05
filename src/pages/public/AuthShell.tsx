@@ -16,7 +16,7 @@ export function AuthShell({ children, aside }: { children: React.ReactNode; asid
               <p className="font-display text-5xl leading-tight font-semibold">
                 Wealth, managed
                 <br />
-                <span className="text-gold-300 italic">beautifully.</span>
+                <span className="text-gold-300">beautifully.</span>
               </p>
               <p className="mt-5 max-w-md text-white/65">Professionalism, Innovation, Listening, Accountability, Trust and Equity — the PILATE values behind every naira we manage.</p>
             </>

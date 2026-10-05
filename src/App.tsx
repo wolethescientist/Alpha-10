@@ -6,7 +6,13 @@ import { ClientLayout } from './components/ClientLayout'
 import { StaffLayout } from './components/StaffLayout'
 import { useApp } from './store/app'
 import { useMarket } from './store/market'
-import Landing from './pages/public/Landing'
+import { SiteLayout } from './site/SiteLayout'
+import SiteHome from './site/pages/Home'
+import SiteAbout from './site/pages/About'
+import SiteServices from './site/pages/Services'
+import SiteProducts from './site/pages/Products'
+import SitePlatform from './site/pages/Platform'
+import SiteContact from './site/pages/Contact'
 import Login from './pages/public/Login'
 import Register from './pages/public/Register'
 import Forgot from './pages/public/Forgot'
@@ -98,7 +104,14 @@ export default function App() {
     <ErrorBoundary>
       <ScrollTop />
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<SiteHome />} />
+            <Route path="/about" element={<SiteAbout />} />
+            <Route path="/services" element={<SiteServices />} />
+            <Route path="/products" element={<SiteProducts />} />
+            <Route path="/platform" element={<SitePlatform />} />
+            <Route path="/contact" element={<SiteContact />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot" element={<Forgot />} />

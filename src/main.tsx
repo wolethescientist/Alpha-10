@@ -9,7 +9,6 @@ import '@fontsource/playfair-display/700.css'
 import '@fontsource/playfair-display/500-italic.css'
 import '@fontsource/playfair-display/600-italic.css'
 import '@fontsource/instrument-serif/400.css'
-import '@fontsource/instrument-serif/400-italic.css'
 import '@fontsource-variable/geist'
 import './index.css'
 

@@ -18,7 +18,7 @@ export default function MobilePreview() {
           <h1 className="mt-8 font-display text-5xl leading-tight font-semibold">
             The same portal,
             <br />
-            <span className="text-gold-300 italic">in every pocket.</span>
+            <span className="text-gold-300">in every pocket.</span>
           </h1>
           <p className="mt-5 text-white/65">
             Fully responsive and ready to ship as an iOS and Android app. This phone is the live portal — tap around, make a deposit, check the markets.

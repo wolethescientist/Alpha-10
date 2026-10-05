@@ -35,6 +35,21 @@ The dark **Demo** button in the bottom-right corner (or **Shift + D**) opens the
 
 ## What's inside
 
+**Public website**: six pages (`/`, `/about`, `/services`, `/products`, `/platform`, `/contact`). It has an editorial look: upright Instrument Serif and Geist type on warm paper, with no italics. The motion uses GSAP:
+- **Smooth scrolling and page changes:** ScrollSmoother scrolling, and a crimson curtain transition between pages.
+- **Hero animation:** headlines build up letter by letter with SplitText, and the logo ribbons draw themselves in with DrawSVG.
+- **Scroll-driven sections:**
+  - a horizontal scroll through the three businesses
+  - pinned PILATE values
+  - a pinned phone walkthrough on Platform
+  - service lists that stay in view as you scroll
+- **Small touches:**
+  - product filters that animate between layouts (Flip)
+  - a rates marquee that speeds up as you scroll
+  - buttons that lean toward the cursor
+  - a full-screen mobile menu
+
+
 **Client portal (`/app`)**
 - **Dashboard**:
   - The balance animates as it loads, and interest accrues every second.
@@ -90,7 +105,7 @@ The dark **Demo** button in the bottom-right corner (or **Shift + D**) opens the
 
 ## Stack
 
-React 19, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Recharts, Zustand (persisted), jsPDF and canvas-confetti. Fonts (Playfair Display and Inter) are self-hosted, so the demo works offline.
+React 19, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Recharts, Zustand (persisted), jsPDF and canvas-confetti. GSAP (ScrollTrigger, ScrollSmoother, SplitText, DrawSVG, Flip) drives the public website. Fonts (Playfair Display, Inter, Instrument Serif and Geist) are self-hosted, so the demo works offline.
 
 ## Notes
 
