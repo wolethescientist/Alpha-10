@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Building2, Eye, EyeOff, Fingerprint, Lock, Mail, ShieldCheck, User } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
@@ -51,9 +51,9 @@ export default function Login() {
   return (
     <AuthShell>
       <div className="w-full max-w-md">
-        <AnimatePresence mode="wait">
+        <>
           {step === 'creds' ? (
-            <motion.div key="creds" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <motion.div key="creds" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
               <h1 className="font-display text-4xl font-semibold tracking-tight">Welcome back</h1>
               <p className="mt-2 text-muted">Sign in to your Alpha10 {role === 'staff' ? 'staff console' : 'account'}.</p>
               <Segmented
@@ -122,11 +122,11 @@ export default function Login() {
               )}
             </motion.div>
           ) : (
-            <motion.div key="otp" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+            <motion.div key="otp" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
               <OtpStep onBack={() => setStep('creds')} onDone={finish} destination={role === 'staff' ? 'your authenticator app' : '+234 •••• ••• 0123'} />
             </motion.div>
           )}
-        </AnimatePresence>
+        </>
       </div>
     </AuthShell>
   )

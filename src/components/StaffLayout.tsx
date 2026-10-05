@@ -85,11 +85,9 @@ export function StaffLayout() {
           </div>
         </header>
         <main className="mx-auto max-w-[1400px] overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
-          <AnimatePresence mode="wait">
-            <motion.div key={loc.pathname} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div key={loc.pathname} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+            <Outlet />
+          </motion.div>
         </main>
       </div>
     </div>

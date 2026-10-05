@@ -1,44 +1,41 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { Component, useEffect, type ReactNode } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { BrandLoader, Toaster } from './components/ui'
+import { Button, Logo, Toaster } from './components/ui'
 import { DemoPanel } from './components/DemoPanel'
 import { ClientLayout } from './components/ClientLayout'
 import { StaffLayout } from './components/StaffLayout'
 import { useApp } from './store/app'
 import { useMarket } from './store/market'
-
-const Landing = lazy(() => import('./pages/public/Landing'))
-const Login = lazy(() => import('./pages/public/Login'))
-const Register = lazy(() => import('./pages/public/Register'))
-const Forgot = lazy(() => import('./pages/public/Forgot'))
-const DemoGuide = lazy(() => import('./pages/public/DemoGuide'))
-const MobilePreview = lazy(() => import('./pages/public/MobilePreview'))
-
-const Dashboard = lazy(() => import('./pages/client/Dashboard'))
-const Invest = lazy(() => import('./pages/client/Invest'))
-const ProductDetail = lazy(() => import('./pages/client/ProductDetail'))
-const Portfolio = lazy(() => import('./pages/client/Portfolio'))
-const Certificate = lazy(() => import('./pages/client/Certificate'))
-const Transactions = lazy(() => import('./pages/client/Transactions'))
-const Markets = lazy(() => import('./pages/client/Markets'))
-const Insights = lazy(() => import('./pages/client/Insights'))
-const Article = lazy(() => import('./pages/client/Article'))
-const Goals = lazy(() => import('./pages/client/Goals'))
-const AutoInvest = lazy(() => import('./pages/client/AutoInvest'))
-const Statements = lazy(() => import('./pages/client/Statements'))
-const Support = lazy(() => import('./pages/client/Support'))
-const Settings = lazy(() => import('./pages/client/Settings'))
-const Referrals = lazy(() => import('./pages/client/Referrals'))
-const Notifications = lazy(() => import('./pages/client/Notifications'))
-const Halal = lazy(() => import('./pages/client/Halal'))
-
-const StaffOverview = lazy(() => import('./pages/staff/Overview'))
-const StaffClients = lazy(() => import('./pages/staff/Clients'))
-const StaffClient = lazy(() => import('./pages/staff/ClientDetail'))
-const StaffApprovals = lazy(() => import('./pages/staff/Approvals'))
-const StaffProducts = lazy(() => import('./pages/staff/Products'))
-const StaffBroadcasts = lazy(() => import('./pages/staff/Broadcasts'))
-const StaffReports = lazy(() => import('./pages/staff/Reports'))
+import Landing from './pages/public/Landing'
+import Login from './pages/public/Login'
+import Register from './pages/public/Register'
+import Forgot from './pages/public/Forgot'
+import DemoGuide from './pages/public/DemoGuide'
+import MobilePreview from './pages/public/MobilePreview'
+import Dashboard from './pages/client/Dashboard'
+import Invest from './pages/client/Invest'
+import ProductDetail from './pages/client/ProductDetail'
+import Portfolio from './pages/client/Portfolio'
+import Certificate from './pages/client/Certificate'
+import Transactions from './pages/client/Transactions'
+import Markets from './pages/client/Markets'
+import Insights from './pages/client/Insights'
+import Article from './pages/client/Article'
+import Goals from './pages/client/Goals'
+import AutoInvest from './pages/client/AutoInvest'
+import Statements from './pages/client/Statements'
+import Support from './pages/client/Support'
+import Settings from './pages/client/Settings'
+import Referrals from './pages/client/Referrals'
+import Notifications from './pages/client/Notifications'
+import Halal from './pages/client/Halal'
+import StaffOverview from './pages/staff/Overview'
+import StaffClients from './pages/staff/Clients'
+import StaffClient from './pages/staff/ClientDetail'
+import StaffApprovals from './pages/staff/Approvals'
+import StaffProducts from './pages/staff/Products'
+import StaffBroadcasts from './pages/staff/Broadcasts'
+import StaffReports from './pages/staff/Reports'
 
 function RequireRole({ role, children }: { role: 'client' | 'staff'; children: React.ReactNode }) {
   const session = useApp((s) => s.session)
@@ -49,12 +46,25 @@ function RequireRole({ role, children }: { role: 'client' | 'staff'; children: R
   return <>{children}</>
 }
 
-function Fallback() {
-  return (
-    <div className="grid min-h-[60vh] place-items-center">
-      <BrandLoader />
-    </div>
-  )
+/** Last line of defence: never leave the presenter staring at a blank screen. */
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null }
+  static getDerivedStateFromError(error: Error) {
+    return { error }
+  }
+  render() {
+    if (!this.state.error) return this.props.children
+    return (
+      <div className="grid min-h-screen place-items-center bg-bg px-6 text-center">
+        <div>
+          <Logo className="mx-auto h-10" />
+          <p className="mt-8 font-display text-3xl font-semibold">Something went wrong</p>
+          <p className="mt-2 text-muted">Reload the page to continue — your demo data is safe.</p>
+          <Button className="mt-6" onClick={() => location.reload()}>Reload</Button>
+        </div>
+      </div>
+    )
+  }
 }
 
 function useMarketClock() {
@@ -81,9 +91,8 @@ export default function App() {
   }, [theme])
 
   return (
-    <>
+    <ErrorBoundary>
       <ScrollTop />
-      <Suspense fallback={<Fallback />}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -138,9 +147,8 @@ export default function App() {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </Suspense>
       <Toaster />
       <DemoPanel />
-    </>
+    </ErrorBoundary>
   )
 }

@@ -1,4 +1,3 @@
-import { jsPDF } from 'jspdf'
 import { date, money } from './format'
 import { accrued, holdingValue, maturityDate, productMap } from './products'
 import type { ClientAccount, Holding, Txn } from './types'
@@ -21,6 +20,7 @@ const pdfMoney = (v: number, c: 'NGN' | 'USD') => money(v, c).replace('₦', 'NG
 
 export async function certificatePdf(acc: ClientAccount, h: Holding) {
   const p = productMap[h.productId]
+  const { jsPDF } = await import('jspdf')
   const doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4' })
   const W = doc.internal.pageSize.getWidth()
   const H = doc.internal.pageSize.getHeight()
@@ -109,6 +109,7 @@ export async function certificatePdf(acc: ClientAccount, h: Holding) {
 }
 
 export async function statementPdf(acc: ClientAccount, txns: Txn[], from: Date, to: Date, fx: number) {
+  const { jsPDF } = await import('jspdf')
   const doc = new jsPDF({ unit: 'pt', format: 'a4' })
   const W = doc.internal.pageSize.getWidth()
   const H = doc.internal.pageSize.getHeight()

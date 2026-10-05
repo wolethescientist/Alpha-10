@@ -178,8 +178,8 @@ export default function Register() {
           <motion.div className="h-full bg-brand-700" animate={{ width: `${((step + 1) / STEPS.length) * 100}%` }} />
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div key={step} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.25 }}>
+        <>
+          <motion.div key={step} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.25 }}>
             {step === 0 && (
               <div>
                 <h1 className="font-display text-3xl font-semibold">What kind of account?</h1>
@@ -383,7 +383,7 @@ export default function Register() {
               </div>
             )}
           </motion.div>
-        </AnimatePresence>
+        </>
 
         <div className="mt-8 flex gap-3">
           {step > 0 ? (

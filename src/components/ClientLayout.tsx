@@ -310,11 +310,9 @@ export function ClientLayout() {
           </div>
         </header>
         <main className="mx-auto max-w-[1400px] overflow-x-clip px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
-          <AnimatePresence mode="wait">
-            <motion.div key={loc.pathname} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}>
-              <Outlet />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div key={loc.pathname} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}>
+            <Outlet />
+          </motion.div>
         </main>
         <footer className="mx-auto max-w-[1400px] px-4 pb-24 text-xs text-faint sm:px-6 lg:px-10 lg:pb-10">
           <div className="flex flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:justify-between">
